@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema name="Airbookings">
+    <connection>
+        <uri>jdbc:postgresql://localhost/demo</uri>
+        <username>airdemo</username>
+        <password>demo</password>
+    </connection>
+    <tables>
+        <table sql-name="aircrafts" name="воздушные судна">
+            <column sql-name="aircraft_code" name=""/>
+            <column sql-name="model" name=""/>
+            <column sql-name="range" name=""/>
+        </table>
+        <table sql-name="airports" name="аэропорты">
+            <column sql-name="airport_code" name=""/>
+            <column sql-name="airport_name" name=""/>
+            <column sql-name="city" name=""/>
+            <column sql-name="coordinates" name=""/>
+            <column sql-name="timezone" name=""/>
+        </table>
+        <table sql-name="boarding_passes" name="посадочный талон">
+            <column sql-name="ticket_no" name=""/>
+            <column sql-name="flight_id" name=""/>
+            <column sql-name="boarding_no" name=""/>
+            <column sql-name="seat_no" name=""/>
+        </table>
+        <table sql-name="bookings" name="бронирование">
+            <column sql-name="book_ref" name=""/>
+            <column sql-name="book_date" name=""/>
+            <column sql-name="total_amount" name=""/>
+        </table>    
+        <table sql-name="flights" name="полет воздушного судна">
+            <column sql-name="flight_id" name=""/>
+            <column sql-name="flight_no" name=""/>
+            <column sql-name="scheduled_departure" name=""/>
+            <column sql-name="scheduled_arrival" name=""/>
+            <column sql-name="departure_airport" name=""/>
+            <column sql-name="arrival_airport" name=""/>
+            <column sql-name="status" name=""/>
+            <column sql-name="aircraft_code" name=""/>
+            <column sql-name="actual_departure" name=""/>
+            <column sql-name="actual_arrival" name=""/>
+        </table> 
+        <table sql-name="seats" name="посадочное место">
+            <column sql-name="aircraft_code" name=""/>
+            <column sql-name="seat_no" name=""/>
+            <column sql-name="fare_conditions" name=""/>
+        </table>
+        <table sql-name="ticket_flights" name="полеты по билету">
+            <column sql-name="ticket_no" name=""/>
+            <column sql-name="flight_id" name=""/>
+            <column sql-name="fare_conditions" name=""/>
+            <column sql-name="amount" name=""/>
+        </table> 
+        <table sql-name="tickets" name="проданный билет">
+            <column sql-name="ticket_no" name=""/>
+            <column sql-name="book_ref" name=""/>
+            <column sql-name="passenger_id" name=""/>
+            <column sql-name="passenger_name" name=""/>
+            <column sql-name="contact_data" name=""/>
+        </table>       
+    </tables>
+    <labs-config>
+        <lab02 id="lab02" description="простая выборка из таблицы">
+            <task01 id="task01" description="none">
+                <prolog>Выведите содержимое всех столбцов таблицы </prolog>
+                <epilog>.</epilog>
+                <!-- <forbiden-table>ticket_flights</forbiden-table> -->
+            </task01>
+            <task02 id="task02" description="none">
+                <prolog>Выведите содержимое столбца(столбцов) </prolog>
+                <epilog> для таблицы </epilog>
+                <!-- <forbiden-table>ticket_flights</forbiden-table> -->
+            </task02>
+        </lab02>
+    </labs-config>
+</schema>
