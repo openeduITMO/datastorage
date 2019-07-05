@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema name="Airbookings">
+    <tables>
+        <table sql-name="aircrafts" name="воздушные суда" name-genitive="воздушных судов">
+            <column sql-name="aircraft_code" name="код" name-plural="коды" name-genitive-plural="кодов"
+                    name-creative-plural="кодами"/>
+            <column sql-name="model" name="модель" name-plural="модели" name-genitive-plural="моделей"
+                    name-creative-plural="моделями"/>
+            <column sql-name="range" name="максимально возможная дистанция"
+                    name-plural="максимально возможные дистанции" name-genitive-plural="максимально возможных дистанций"
+                    name-creative-plural="максимально возможными дистанциями"/>
+        </table>
+        <table sql-name="airports" name="аэропорты" name-genitive="аэропортов">
+            <column sql-name="airport_code" name="код" name-plural="коды" name-genitive-plural="кодов"
+                    name-creative-plural="кодами"/>
+            <column sql-name="airport_name" name="имя" name-plural="имена" name-genitive-plural="имён"
+                    name-creative-plural="именами"/>
+            <column sql-name="city" name="город" name-plural="города" name-genitive-plural="городов"
+                    name-creative-plural="городами"/>
+            <column sql-name="timezone" name="временная зона" name-plural="временные зоны"
+                    name-genitive-plural="временных зон" name-creative-plural="временными зонами"/>
+        </table>
+        <table sql-name="boarding_passes" name="посадочный талон" name-genitive="посадочных талонов">
+            <column sql-name="ticket_no" name="номер билета" name-plural="номера билетов"
+                    name-genitive-plural="номеров билетов" name-creative-plural="номерами билетов"/>
+            <column sql-name="flight_id" name="идентификатор рейса" name-plural="идентификаторы рейсов"
+                    name-genitive-plural="идентификаторов рейсов" name-creative-plural="идентификаторами рейсов"/>
+            <column sql-name="boarding_no" name="номер" name-plural="номера" name-genitive-plural="номеров"
+                    name-creative-plural="номерами"/>
+            <column sql-name="seat_no" name="номер места" name-plural="номера мест" name-genitive-plural="номеров мест"
+                    name-creative-plural="номерами мест"/>
+        </table>
+        <table sql-name="bookings" name="бронирование" name-genitive="бронирований">
+            <column sql-name="book_ref" name="код" name-plural="коды" name-genitive-plural="кодов"
+                    name-creative-plural="кодами"/>
+            <column sql-name="book_date" name="дата" name-plural="даты" name-genitive-plural="дат"
+                    name-creative-plural="датами"/>
+            <column sql-name="total_amount" name="стоимость брони" name-plural="стоимости бронирований" name-genitive-plural="стоимостей бронирований"
+                    name-creative-plural="стоимостями бронирований"/>
+        </table>
+        <table sql-name="flights" name="рейс воздушного судна" name-genitive="рейсов воздушного судна">
+            <column sql-name="flight_id" name="идентификатор рейса" name-plural="идентификаторы рейсов"
+                    name-genitive-plural="идентификаторов рейсов" name-creative-plural="идентификаторами рейсов"/>
+            <column sql-name="flight_no" name="номер рейса" name-plural="номера рейсов"
+                    name-genitive-plural="номеров рейсов" name-creative-plural="номерами рейсов"/>
+            <column sql-name="scheduled_departure" name="время планируемого отправления"
+                    name-plural="времена планируемых отправлений" name-genitive-plural="времен планируемых отправлений"
+                    name-creative-plural="временами планируемых отправлений"/>
+            <column sql-name="scheduled_arrival" name="время планируемого прибытия"
+                    name-plural="времена планируемых прибытий" name-genitive-plural="времен планируемых прибытий"
+                    name-creative-plural="временами планируемых прибытий"/>
+            <column sql-name="departure_airport" name="аэропорт отправления" name-plural="аэропорты отправления"
+                    name-genitive-plural="аэропортов отправлений" name-creative-plural="аэропортами отправления"/>
+            <column sql-name="arrival_airport" name="аэропорт прибытия" name-plural="аэропорты прибытия"
+                    name-genitive-plural="аэропортов прибытий" name-creative-plural="аэропортами прибытия"/>
+            <column sql-name="status" name="статус" name-plural="статусы" name-genitive-plural="статусов"
+                    name-creative-plural="статусами"/>
+            <column sql-name="aircraft_code" name="код воздушного судна" name-plural="коды воздушных судов"
+                    name-genitive-plural="кодов воздушных судов" name-creative-plural="кодами воздушных судов"/>
+            <column sql-name="actual_departure" name="время отправления" name-plural="времена отправлений"
+                    name-genitive-plural="времён отправлений" name-creative-plural="временами отправлений"/>
+            <column sql-name="actual_arrival" name="время прибытия" name-plural="времена прибытий"
+                    name-genitive-plural="времён прибытий" name-creative-plural="временами прибытий"/>
+        </table>
+        <table sql-name="seats" name="посадочное место" name-genitive="посадочных мест">
+            <column sql-name="aircraft_code" name="код воздушного судна" name-plural="коды воздушных судов"
+                    name-genitive-plural="кодов воздушных судов" name-creative-plural="кодами воздушных судов"/>
+            <column sql-name="seat_no" name="номер места" name-plural="номера мест" name-genitive-plural="номеров мест"
+                    name-creative-plural="номерами мест"/>
+            <column sql-name="fare_conditions" name="тариф" name-plural="тарифы" name-genitive-plural="тарифов"
+                    name-creative-plural="тарифами"/>
+        </table>
+        <table sql-name="ticket_flights" name="состоявшийся полет" name-genitive="состоявшихся полетов">
+            <column sql-name="ticket_no" name="номер билета" name-plural="номера билетов"
+                    name-genitive-plural="номеров билетов" name-creative-plural="номерами билетов"/>
+            <column sql-name="flight_id" name="идентификатор рейса" name-plural="идентификаторы рейсов"
+                    name-genitive-plural="идентификаторов рейсов" name-creative-plural="идентификаторами рейсов"/>
+            <column sql-name="fare_conditions" name="тариф" name-plural="тарифы" name-genitive-plural="тарифов"
+                    name-creative-plural="тарифами"/>
+            <column sql-name="amount" name="стоимость билета" name-plural="стоимости билетов" name-genitive-plural="стоимостей билетов"
+                    name-creative-plural="стоимостями билетов"/>
+        </table>
+        <table sql-name="tickets" name="проданный билет" name-genitive="проданных билетов">
+            <column sql-name="ticket_no" name="номер" name-plural="номера" name-genitive-plural="номеров"
+                    name-creative-plural="номерами"/>
+            <column sql-name="book_ref" name="код бронирования" name-plural="коды бронирования"
+                    name-genitive-plural="кодов бронирования" name-creative-plural="кодами бронирования"/>
+            <column sql-name="passenger_id" name="идентификатор пассажира" name-plural="идентификаторы пассажиров"
+                    name-genitive-plural="идентификаторов пассажиров"
+                    name-creative-plural="идентификаторами пассажиров"/>
+            <column sql-name="passenger_name" name="имя пассажира" name-plural="имена пассажиров"
+                    name-genitive-plural="имён пассажиров" name-creative-plural="именами пассажиров"/>
+            <column sql-name="contact_data" name="контактная информация" name-plural="контактные данные"
+                    name-genitive-plural="контактных данных" name-creative-plural="контактными данными"/>
+        </table>
+    </tables>
+
+    <conditions>
+        <table sql="aircrafts" native="воздушные судна">
+            <condition native="код самолёта должен быть" sql="aircraft_code"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>320</option>
+                <option>321</option>
+                <option>733</option>
+                <option>763</option>
+                <option>773</option>
+                <option>CN1</option>
+                <option>CR2</option>
+            </condition>
+            <condition native="название модели самолёта должно быть" sql="model"
+                       count-conditions="1" greater="" below="" equals="равно" contains-null="">
+                <option>Аэробус A320-200</option>
+                <option>Аэробус A321-200</option>
+                <option>Боинг 737-300</option>
+                <option>Боинг 767-300</option>
+                <option>Боинг 777-300</option>
+                <option>Бомбардье CRJ-200</option>
+                <option>Сессна 208 Караван</option>
+            </condition>
+            <condition native="максимальная дальность полёта самолёта должна быть" sql="range"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="равна" contains-null="">
+                <option>7900</option>
+                <option>3000</option>
+                <option>5700</option>
+                <option>5600</option>
+                <option>6700</option>
+                <option>4200</option>
+                <option>2700</option>
+            </condition>
+            <condition native="максимальная дальность полёта самолёта должна быть" sql="range"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="" contains-null="">
+                <option>8000</option>
+                <option>7000</option>
+                <option>6000</option>
+                <option>5000</option>
+                <option>4000</option>
+                <option>3000</option>
+                <option>2000</option>
+            </condition>
+        </table>
+        <table sql="airports" native="аэропорты">
+            <condition native="код аэропорта должен быть" sql="airport_code"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>USK</option>
+                <option>ULY</option>
+                <option>MCX</option>
+                <option>IAR</option>
+                <option>OVB</option>
+                <option>ARH</option>
+                <option>SCW</option>
+                <option>SGC</option>
+                <option>GOJ</option>
+                <option>SWT</option>
+                <option>STW</option>
+                <option>NOZ</option>
+                <option>AER</option>
+                <option>OVS</option>
+                <option>RTW</option>
+                <option>SKX</option>
+                <option>SLY</option>
+                <option>TJM</option>
+                <option>ROV</option>
+                <option>LED</option>
+                <option>PKV</option>
+            </condition>
+            <condition native="название аэропорта должно быть" sql="airport_name"
+                       count-conditions="1" greater="" below="" equals="равно" contains-null="">
+                <option>Воронеж</option>
+                <option>Геленджик</option>
+                <option>Горно-Алтайск</option>
+                <option>Грозный</option>
+                <option>Кольцово</option>
+                <option>Иваново-Южный</option>
+                <option>Ижевск</option>
+                <option>Иркутск</option>
+                <option>Йошкар-Ола</option>
+                <option>Казань</option>
+                <option>Храброво</option>
+                <option>Калуга</option>
+                <option>Кемерово</option>
+                <option>Победилово</option>
+                <option>Когалым</option>
+                <option>Хурба</option>
+                <option>Краснодар</option>
+                <option>Емельяново</option>
+                <option>Курган</option>
+                <option>Курск-Восточный</option>
+                <option>Кызыл</option>
+                <option>Липецк</option>
+                <option>Магадан</option>
+                <option>Магнитогорск</option>
+                <option>Уйташ</option>
+                <option>Минеральные Воды</option>
+                <option>Мирный</option>
+                <option>Домодедово</option>
+                <option>Внуково</option>
+                <option>Шереметьево</option>
+                <option>Мурманск</option>
+                <option>Надым</option>
+            </condition>
+            <condition native="название города должно быть" sql="city"
+                       count-conditions="1" greater="" below="" equals="равно" contains-null="">
+                <option>Якутск</option>
+                <option>Мирный</option>
+                <option>Хабаровск</option>
+                <option>Петропавловск-Камчатский</option>
+                <option>Южно-Сахалинск</option>
+                <option>Владивосток</option>
+                <option>Санкт-Петербург</option>
+                <option>Калининград</option>
+                <option>Кемерово</option>
+                <option>Челябинск</option>
+                <option>Магнитогорск</option>
+                <option>Пермь</option>
+                <option>Сургут</option>
+                <option>Брянск</option>
+                <option>Минеральные Воды</option>
+                <option>Ставрополь</option>
+                <option>Астрахань</option>
+                <option>Нижневартовск</option>
+                <option>Екатеринбург</option>
+                <option>Москва</option>
+                <option>Воронеж</option>
+                <option>Москва</option>
+                <option>Сыктывкар</option>
+                <option>Самара</option>
+                <option>Москва</option>
+                <option>Тюмень</option>
+                <option>Нижний Новгород</option>
+                <option>Томск</option>
+                <option>Усть-Илимск</option>
+                <option>Норильск</option>
+            </condition>
+            <condition native="временная зона должна быть" sql="timezone"
+                       count-conditions="1" greater="" below="" equals="равна" contains-null="">
+                <option>Asia/Krasnoyarsk</option>
+                <option>Asia/Anadyr</option>
+                <option>Europe/Moscow</option>
+                <option>Europe/Samara</option>
+                <option>Asia/Yekaterinburg</option>
+                <option>Asia/Yakutsk</option>
+                <option>Asia/Irkutsk</option>
+            </condition>
+        </table>
+        <table sql="boarding_passes" native="посадочные талоны">
+            <condition native="номер билета должен быть" sql="ticket_no"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="равен" contains-null="">
+                <option>0005432261116</option>
+                <option>0005432261109</option>
+                <option>0005432816939</option>
+                <option>0005432261121</option>
+                <option>0005432261126</option>
+                <option>0005432816940</option>
+                <option>0005432261120</option>
+                <option>0005432261087</option>
+                <option>0005432816965</option>
+                <option>0005432288927</option>
+                <option>0005432261112</option>
+                <option>0005432261127</option>
+                <option>0005432816958</option>
+                <option>0005432261114</option>
+                <option>0005432816946</option>
+                <option>0005432816964</option>
+                <option>0005432261132</option>
+                <option>0005432261113</option>
+                <option>0005432816952</option>
+            </condition>
+            <condition native="идентификатор рейса должен быть" sql="flight_id"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="равен" contains-null="">
+                <option>15791</option>
+                <option>5995</option>
+                <option>9586</option>
+                <option>9290</option>
+                <option>28956</option>
+                <option>15046</option>
+                <option>31614</option>
+                <option>25223</option>
+                <option>4241</option>
+                <option>11845</option>
+                <option>26598</option>
+                <option>352</option>
+                <option>18069</option>
+                <option>25291</option>
+                <option>11603</option>
+                <option>5367</option>
+                <option>9940</option>
+                <option>13948</option>
+                <option>2342</option>
+                <option>17263</option>
+                <option>12534</option>
+                <option>32042</option>
+
+            </condition>
+            <condition native="номер посадочного талона должен быть" sql="boarding_no"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="равен" contains-null="">
+                <option>6</option>
+                <option>24</option>
+                <option>8</option>
+                <option>26</option>
+                <option>13</option>
+                <option>38</option>
+                <option>2</option>
+                <option>16</option>
+                <option>21</option>
+                <option>20</option>
+                <option>24</option>
+                <option>3</option>
+            </condition>
+            <condition native="номер места должен быть" sql="seat_no"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>13E</option>
+                <option>22D</option>
+                <option>14D</option>
+                <option>19A</option>
+                <option>6D</option>
+                <option>2C</option>
+                <option>17F</option>
+                <option>1A</option>
+                <option>4D</option>
+                <option>19C</option>
+                <option>4B</option>
+                <option>21A</option>
+                <option>18D</option>
+                <option>18B</option>
+                <option>10C</option>
+                <option>6A</option>
+            </condition>
+        </table>
+        <table sql="bookings" native="забронированые билеты">
+            <condition native="код должен быть" sql="book_ref"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>61EAC7</option>
+                <option>98A065</option>
+                <option>CA287C</option>
+                <option>33DAE5</option>
+                <option>1BB83B</option>
+                <option>D316F5</option>
+                <option>1731E8</option>
+                <option>4BAE8E</option>
+                <option>8156F1</option>
+                <option>30E106</option>
+                <option>B9FDC0</option>
+                <option>E6B2BE</option>
+                <option>22B61D</option>
+                <option>B9CEAC</option>
+                <option>2566D4</option>
+                <option>7CED82</option>
+            </condition>
+            <condition native="бронь должна быть" sql="book_date"
+                       count-conditions="1" greater="сделана позже" below="сделана раньше" equals="" contains-null="">
+                <option>2017-07-30</option>
+                <option>2017-07-25</option>
+                <option>2017-08-09</option>
+                <option>2017-07-21</option>
+                <option>2017-07-26</option>
+                <option>2017-07-16</option>
+                <option>2017-08-07</option>
+                <option>2017-08-12</option>
+                <option>2017-08-14</option>
+                <option>2017-07-24</option>
+                <option>2017-08-12</option>
+                <option>2017-08-05</option>
+                <option>2017-08-10</option>
+                <option>2017-08-11</option>
+                <option>2017-07-24</option>
+                <option>2017-08-12</option>
+                <option>2017-07-15</option>
+                <option>2017-08-01</option>
+                <option>2017-07-21</option>
+            </condition>
+            <condition native="общая сумма покупки должна быть" sql="total_amount"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="" contains-null="">
+                <option>10000</option>
+                <option>20000</option>
+                <option>50000</option>
+                <option>60000</option>
+                <option>80000</option>
+                <option>12000</option>
+                <option>15000</option>
+                <option>38000</option>
+                <option>23000</option>
+                <option>27000</option>
+                <option>58000</option>
+            </condition>
+        </table>
+        <table sql="flights" native="рейсы воздушных судов">
+            <condition native="идентификатор рейса должен быть" sql="flight_id"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="" contains-null="">
+                <option>1000</option>
+                <option>2000</option>
+                <option>5000</option>
+                <option>6000</option>
+                <option>8000</option>
+                <option>10000</option>
+                <option>15000</option>
+                <option>20000</option>
+                <option>23000</option>
+                <option>27000</option>
+                <option>30000</option>
+            </condition>
+            <condition native="номер рейса должен быть" sql="flight_no"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>PG0134</option>
+                <option>PG0052</option>
+                <option>PG0561</option>
+                <option>PG0529</option>
+                <option>PG0461</option>
+                <option>PG0667</option>
+                <option>PG0360</option>
+                <option>PG0569</option>
+                <option>PG0498</option>
+            </condition>
+            <condition native="время планируемого отправления рейса должно быть" sql="scheduled_departure"
+                       count-conditions="1" greater="" below="" equals="равно" contains-null="">
+                <option>2017-09-10 06:50:00.000000</option>
+                <option>2017-08-25 11:50:00.000000</option>
+                <option>2017-09-05 09:30:00.000000</option>
+                <option>2017-09-12 06:50:00.000000</option>
+                <option>2017-09-04 09:25:00.000000</option>
+                <option>2017-09-10 12:00:00.000000</option>
+                <option>2017-08-28 06:00:00.000000</option>
+                <option>2017-08-24 12:05:00.000000</option>
+                <option>2017-09-12 07:15:00.000000</option>
+            </condition>
+            <condition native="время планируемого прибытия рейса должно быть" sql="scheduled_arrival"
+                       count-conditions="1" greater="" below="" equals="равно" contains-null="">
+                <option>2017-08-05 14:35:00.000000</option>
+                <option>2017-08-12 14:35:00.000000</option>
+                <option>2017-08-19 14:35:00.000000</option>
+                <option>2017-08-26 14:35:00.000000</option>
+                <option>2017-09-02 14:35:00.000000</option>
+                <option>2017-09-09 14:35:00.000000</option>
+                <option>2017-07-16 09:30:00.000000</option>
+                <option>2017-07-23 09:30:00.000000</option>
+                <option>2017-07-30 09:30:00.000000</option>
+            </condition>
+            <condition native="аэропорт отправления должен быть" sql="departure_airport"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>DYR</option>
+                <option>VVO</option>
+                <option>YKS</option>
+                <option>CNN</option>
+                <option>UUS</option>
+                <option>IKT</option>
+                <option>BAX</option>
+                <option>KHV</option>
+                <option>BTK</option>
+            </condition>
+            <condition native="аэропорт прибытия должен быть" sql="arrival_airport"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>DYR</option>
+                <option>VVO</option>
+                <option>YKS</option>
+                <option>CNN</option>
+                <option>UUS</option>
+                <option>IKT</option>
+                <option>BAX</option>
+                <option>KHV</option>
+                <option>BTK</option>
+            </condition>
+            <condition native="статус полёта должен быть" sql="status"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>Departed</option>
+                <option>Arrived</option>
+                <option>On Time</option>
+                <option>Delayed</option>
+                <option>Scheduled</option>
+            </condition>
+            <condition native="код воздушного судна должен быть" sql="aircraft_code"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>321</option>
+                <option>320</option>
+                <option>SU9</option>
+                <option>319</option>
+            </condition>
+            <condition native="реальное время вылета самолёта должно быть" sql="actual_departure"
+                       count-conditions="1" greater="" below="" equals="равно" contains-null="не задано">
+                <option>2017-07-16 02:07:00.000000</option>
+                <option>2017-07-16 02:27:00.000000</option>
+                <option>2017-07-16 02:36:00.000000</option>
+                <option>2017-07-16 02:45:00.000000</option>
+                <option>2017-07-16 02:53:00.000000</option>
+                <option>2017-07-16 03:03:00.000000</option>
+                <option>2017-07-16 03:16:00.000000</option>
+                <option>2017-07-16 03:17:00.000000</option>
+                <option>2017-07-16 03:31:00.000000</option>
+                <option>2017-07-16 03:37:00.000000</option>
+                <option>2017-07-16 03:39:00.000000</option>
+                <option>2017-07-16 03:42:00.000000</option>
+                <option>2017-07-16 03:48:00.000000</option>
+                <option>2017-07-16 03:53:00.000000</option>
+                <option>2017-07-16 03:54:00.000000</option>
+                <option>2017-07-16 04:05:00.000000</option>
+                <option>2017-07-16 04:07:00.000000</option>
+                <option>2017-07-16 04:08:00.000000</option>
+                <option>2017-07-16 04:14:00.000000</option>
+                <option>2017-07-16 04:19:00.000000</option>
+                <option>2017-07-16 04:20:00.000000</option>
+                <option>2017-07-16 04:27:00.000000</option>
+            </condition>
+            <condition native="реальное время прибытия самолёта должно быть" sql="actual_arrival"
+                       count-conditions="1" greater="" below="" equals="равно" contains-null="не задано">
+                <option>2017-08-10 08:41:00.000000</option>
+                <option>2017-07-24 08:38:00.000000</option>
+                <option>2017-07-27 08:39:00.000000</option>
+                <option>2017-07-26 08:39:00.000000</option>
+                <option>2017-08-04 08:38:00.000000</option>
+                <option>2017-08-06 08:36:00.000000</option>
+                <option>2017-07-25 15:52:00.000000</option>
+                <option>2017-07-17 08:34:00.000000</option>
+                <option>2017-07-30 15:54:00.000000</option>
+                <option>2017-08-14 10:53:00.000000</option>
+                <option>2017-07-16 08:37:00.000000</option>
+                <option>2017-08-15 08:37:00.000000</option>
+            </condition>
+        </table>
+        <table sql="seats" native="посадочные места">
+            <condition native="код воздушного судна должен быть" sql="aircraft_code"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>321</option>
+                <option>320</option>
+                <option>SU9</option>
+                <option>319</option>
+            </condition>
+            <condition native="номер места должен быть" sql="seat_no"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>10A</option>
+                <option>10B</option>
+                <option>10C</option>
+                <option>10D</option>
+                <option>10E</option>
+                <option>10F</option>
+                <option>11A</option>
+                <option>11B</option>
+                <option>11C</option>
+            </condition>
+            <condition native="тариф должен быть" sql="fare_conditions"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>Economy</option>
+                <option>Business</option>
+                <option>Comfort</option>
+            </condition>
+        </table>
+        <table sql="ticket_flights" native="состоявшиеся полёты">
+            <condition native="номер билета должен быть" sql="ticket_no"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="равен" contains-null="">
+                <option>0005433261656</option>
+                <option>0005434964392</option>
+                <option>0005433261738</option>
+                <option>0005434964313</option>
+                <option>0005434964386</option>
+                <option>0005433261751</option>
+                <option>0005434964381</option>
+                <option>0005434964367</option>
+                <option>0005434964366</option>
+                <option>0005434964403</option>
+                <option>0005433261726</option>
+                <option>0005433261744</option>
+                <option>0005433261733</option>
+                <option>0005434964428</option>
+                <option>0005433261742</option>
+                <option>0005434964348</option>
+                <option>0005434964550</option>
+                <option>0005433261645</option>
+                <option>0005433261625</option>
+                <option>0005434964557</option>
+            </condition>
+            <condition native="идентификатор рейса должен быть" sql="flight_id"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="" contains-null="">
+                <option>8777</option>
+                <option>3286</option>
+                <option>19691</option>
+                <option>15805</option>
+                <option>11158</option>
+                <option>11144</option>
+            </condition>
+            <condition native="тариф должен быть" sql="fare_conditions"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>Economy</option>
+                <option>Business</option>
+                <option>Comfort</option>
+            </condition>
+            <condition native="стоимость билета должна быть" sql="amount"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="равна" contains-null="">
+                <option>48400.00</option>
+                <option>18800.00</option>
+                <option>145300.00</option>
+                <option>6900.00</option>
+                <option>8100.00</option>
+            </condition>
+        </table>
+        <table sql="tickets" native="проданные билеты">
+            <condition native="номер билета должен быть" sql="ticket_no"
+                       count-conditions="1" greater="больше, чем" below="меньше, чем" equals="равен" contains-null="">
+                <option>0005434343797</option>
+                <option>0005434343796</option>
+                <option>0005435426293</option>
+                <option>0005433986164</option>
+                <option>0005433986163</option>
+                <option>0005432905278</option>
+                <option>0005434823366</option>
+                <option>0005434825368</option>
+                <option>0005433398398</option>
+                <option>0005433398397</option>
+                <option>0005435386714</option>
+                <option>0005435386715</option>
+                <option>0005435437973</option>
+            </condition>
+            <condition native="код бронирования должен быть" sql="book_ref"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>7B6A53</option>
+                <option>A1AD46</option>
+                <option>D730BA</option>
+                <option>E7537C</option>
+                <option>7EE677</option>
+                <option>D654C0</option>
+                <option>044F42</option>
+                <option>141E6C</option>
+            </condition>
+            <condition native="идентификатор пассажира должен быть" sql="passenger_id"
+                       count-conditions="1" greater="" below="" equals="равен" contains-null="">
+                <option>9374 822707</option>
+                <option>1596 156448</option>
+                <option>6535 751108</option>
+                <option>0474 690760</option>
+                <option>3293 031739</option>
+                <option>3505 686175</option>
+                <option>6633 206504</option>
+                <option>0219 143781</option>
+            </condition>
+            <condition native="имя пассажира должно быть" sql="passenger_name"
+                       count-conditions="1" greater="" below="" equals="равно" contains-null="">
+                <option>NURIYA PETROVA</option>
+                <option>MAKSIM SERGEEV</option>
+                <option>MARIYA LAZAREVA</option>
+                <option>IRINA SIDOROVA</option>
+                <option>PAVEL VASILEV</option>
+                <option>EKATERINA ANISIMOVA</option>
+                <option>TIMUR KRASNOV</option>
+                <option>DENIS ALEKSANDROV</option>
+            </condition>
+        </table>
+    </conditions>
+
+    <aggregations>
+        <aggregation table-sql="ticket_flights" table-native="состоявшихся полётов" column="amount" function="min"
+                     column-function-native="стоимость самого дешёвого перелёта, соответствующего следующему условию"
+                     condition="fare_conditions"/>
+        <aggregation table-sql="ticket_flights" table-native="состоявшихся полётов" column="amount" function="min"
+                     column-function-native="стоимость самого дешёвого перелёта, соответствующего следующему условию"
+                     condition="flight_id"/>
+
+        <aggregation table-sql="ticket_flights" table-native="состоявшихся полётов" column="amount" function="avg"
+                     column-function-native="среднюю стоимость перелётов, соответствующих следующему условию"
+                     condition="flight_id"/>
+        <aggregation table-sql="ticket_flights" table-native="состоявшихся полётов" column="amount" function="avg"
+                     column-function-native="среднюю стоимость перелётов, соответствующих следующему условию"
+                     condition="fare_conditions"/>
+
+        <aggregation table-sql="ticket_flights" table-native="состоявшихся полётов" column="amount" function="max"
+                     column-function-native="стоимость самого дорогого перелёта, соответствующего следующему условию"
+                     condition="fare_conditions"/>
+        <aggregation table-sql="ticket_flights" table-native="состоявшихся полётов" column="amount" function="max"
+                     column-function-native="стоимость самого дорогого перелёта, соответствующего следующему условию"
+                     condition="flight_id"/>
+    </aggregations>
+</schema>

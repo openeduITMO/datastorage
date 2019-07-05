@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema02 name="Airbookings">
+
+    <references>
+        <table sql-name="aircrafts" join2Table="false">
+            <reference table="seats" column-ref="aircraft_code" join-column-ref="aircraft_code"/>
+            <reference table="flights" column-ref="aircraft_code" join-column-ref="aircraft_code"/>
+        </table>
+        <table sql-name="flights" join2Table="false">
+            <reference table="aircrafts" column-ref="aircraft_code" join-column-ref="aircraft_code"/>
+            <reference table="ticket_flights" column-ref="flight_id" join-column-ref="flight_id"/>
+        </table>
+        <table sql-name="seats" join2Table="true">
+            <reference table="aircrafts" column-ref="aircraft_code" join-column-ref="aircraft_code"/>
+        </table>
+        <table sql-name="ticket_flights" join2Table="false">
+            <reference table="flights" column-ref="flight_id" join-column-ref="flight_id"/>
+            <reference table="tickets" column-ref="ticket_no" join-column-ref="ticket_no"/>
+        </table>
+        <table sql-name="tickets" join2Table="false">
+            <reference table="bookings" column-ref="book_ref" join-column-ref="book_ref"/>
+            <reference table="ticket_flights" column-ref="ticket_no" join-column-ref="ticket_no"/>
+        </table>
+    </references>
+
+    <substrings>
+        <table sql="aircrafts">
+            <substring sql="model">
+                <left-position>Бо Боинг Аэро Аэробус</left-position>
+                <right-position>100 300 00 200</right-position>
+            </substring>
+        </table>
+        <table sql="airports">
+            <substring sql="airport_name">
+                <left-position>Ба Бар Бел Че Ч Ус Сара</left-position>
+                <right-position>ово ск</right-position>
+            </substring>
+            <substring sql="city">
+                <left-position>Ба Бар Бел Че Ч Ус Сара</left-position>
+                <right-position>ово ый</right-position>
+            </substring>
+            <substring sql="timezone">
+                <left-position>Asia Europe</left-position>
+                <right-position>ow burg grad</right-position>
+            </substring>
+        </table>
+        <table sql="boarding_passes">
+            <substring sql="seat_no">
+                <left-position>10 11 12 13 14</left-position>
+                <right-position>A G D F</right-position>
+            </substring>
+        </table>
+        <table sql="flights">
+            <substring sql="status">
+                <left-position>Arr Schedul De On Cancel</left-position>
+                <right-position>yed led ime</right-position>
+            </substring>
+        </table>
+        <table sql="seats">
+            <substring sql="fare_conditions">
+                <left-position>Eco Bus Com</left-position>
+                <right-position>my ort ess</right-position>
+            </substring>
+            <substring sql="seat_no">
+                <left-position>10 11 12 13 14</left-position>
+                <right-position>A G D F</right-position>
+            </substring>
+        </table>
+        <table sql="ticket_flights">
+            <substring sql="fare_conditions">
+                <left-position>Eco Bus Com</left-position>
+                <right-position>my ort ess</right-position>
+            </substring>
+        </table>
+        <table sql="tickets">
+            <substring sql="passenger_name">
+                <left-position>ALEKS AL VIK VI VA TATY SVET IRI</left-position>
+                <right-position>OVA EVA ROV DEV</right-position>
+            </substring>
+        </table>
+    </substrings>
+
+    <cases>
+        <table sql="seats">
+            <case sql-column="fare_conditions"
+                  native-query="'Comfort' и 'Business' на 'Дорого', а 'Economy' на 'Дёшево'"
+                  sql-query="case when fare_conditions in ('Business', 'Comfort') then 'Дорого' else 'Дёшево' end"/>
+
+            <case sql-column="fare_conditions"
+                  native-query="'Business' на 'Дорого', а 'Economy' и 'Comfort' на 'Дёшево'"
+                  sql-query="case when fare_conditions in ('Economy', 'Comfort') then 'Дёшево' else 'Дорого' end"/>
+
+            <case sql-column="fare_conditions"
+                  native-query="'Comfort' на 'Средняя цена', 'Business' на 'Дорого', а 'Economy' на 'Дёшево'"
+                  sql-query="case when fare_conditions = 'Business' then 'Дорого' when fare_conditions = 'Comfort' then 'Средняя цена' else 'Дёшево' end"/>
+
+            <case sql-column="fare_conditions"
+                  native-query="'Comfort' на 'Комфорт', 'Business' на 'Бизнес', а 'Economy' на 'Эконом'"
+                  sql-query="case when fare_conditions = 'Business' then 'Бизнес' when fare_conditions = 'Comfort' then 'Комфорт' else 'Эконом' end"/>
+        </table>
+        <table sql="ticket_flights">
+            <case sql-column="fare_conditions"
+                  native-query="'Comfort' и 'Business' на 'Дорого', а 'Economy' на 'Дёшево'"
+                  sql-query="case when fare_conditions in ('Business', 'Comfort') then 'Дорого' else 'Дёшево' end"/>
+
+            <case sql-column="fare_conditions"
+                  native-query="'Business' на 'Дорого', а 'Economy' и 'Comfort' на 'Дёшево'"
+                  sql-query="case when fare_conditions in ('Economy', 'Comfort') then 'Дёшево' else 'Дорого' end"/>
+
+            <case sql-column="fare_conditions"
+                  native-query="'Comfort' на 'Средняя цена', 'Business' на 'Дорого', а 'Economy' на 'Дёшево'"
+                  sql-query="case when fare_conditions = 'Business' then 'Дорого' when fare_conditions = 'Comfort' then 'Средняя цена' else 'Дёшево' end"/>
+
+            <case sql-column="fare_conditions"
+                  native-query="'Comfort' на 'Комфорт', 'Business' на 'Бизнес', а 'Economy' на 'Эконом'"
+                  sql-query="case when fare_conditions = 'Business' then 'Бизнес' when fare_conditions = 'Comfort' then 'Комфорт' else 'Эконом' end"/>
+        </table>
+        <table sql="flights">
+            <case sql-column="status"
+                  native-query="'Departed' на 'Вылетел', 'Arrived' на 'Прибыл', а остальные на 'Неизвестно'"
+                  sql-query="case when status = 'Departed' then 'Вылетел' when status = 'Arrived' then 'Прибыл' else 'Неизвестно' end"/>
+            <case sql-column="status"
+                  native-query="'Cancelled' на 'Отменён', 'Delayed' на 'Задержен', а остальные на 'В обработке'"
+                  sql-query="case when status = 'Cancelled' then 'Отменён' when status = 'Delayed' then 'Задержен' else 'В обработке' end"/>
+            <case sql-column="status"
+                  native-query="'Arrived' на 'Прибыл', а остальные на 'Не прибыл'"
+                  sql-query="case when status  = 'Arrived' then 'Прибыл' else 'Не прибыл' end"/>
+        </table>
+    </cases>
+
+    <subqueries>
+        <table sql="flights">
+            <subquery column="aircraft_code" join-table="seats" join-column="aircraft_code" condition-column="seat_no"
+                      native-query="которые совершались на самолётах с количеством мест" function="count">
+                <option>50</option>
+                <option>97</option>
+                <option>116</option>
+                <option>130</option>
+                <option>140</option>
+                <option>170</option>
+                <option>222</option>
+            </subquery>
+        </table>
+    </subqueries>
+</schema02>

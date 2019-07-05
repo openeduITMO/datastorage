@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<connection>
+    <uri>jdbc:postgresql://localhost:5432/demo</uri>
+    <username>airdemo</username>
+    <password>demo</password>
+</connection>

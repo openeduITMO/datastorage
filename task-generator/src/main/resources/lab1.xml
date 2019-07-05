@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema01 name="Airbookings">
+    <dates>
+        <date table="flights" column1="scheduled_arrival" column2="scheduled_departure"
+              description="планируемое время каждого полёта для всех воздушных судов">
+            <option sql="/60" native="(в минутах)"/>
+        </date>
+        <epilog/>
+    </dates>
+</schema01>
